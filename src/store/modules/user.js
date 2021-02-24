@@ -42,11 +42,11 @@ const actions = {
       
         login({ email: email.trim(), password: password }).then(response => {
           
-          
-           console.log(response.message)
-            
+                  
            let token = response.data.token
-           localStorage.setItem('token',token)
+           setToken(token)
+           commit('SET_TOKEN', token)
+           //localStorage.setItem('token',token)
 
           resolve(token)
 
@@ -62,7 +62,7 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
+      getInfo().then(response => {
         const { data } = response
 
         if (!data) {

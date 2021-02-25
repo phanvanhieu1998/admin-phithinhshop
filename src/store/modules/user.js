@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo,} from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -6,6 +6,7 @@ import axios from 'axios'
 import Vue from 'vue'
 
 import VueAxios from 'vue-axios'
+
 
 Vue.use(VueAxios, axios)
   const getDefaultState = () =>{
@@ -37,12 +38,9 @@ const actions = {
   // user login
   handleLogin({ commit }, userInfo) {
     return new Promise((resolve,reject) =>{
-
       const { email, password } = userInfo
-      
         login({ email: email.trim(), password: password }).then(response => {
-          
-                  
+               
            let token = response.data.token
            setToken(token)
            commit('SET_TOKEN', token)
@@ -55,8 +53,6 @@ const actions = {
           reject(error)
         })
     })
-       
-
   },
 
   // get user info
@@ -101,7 +97,8 @@ const actions = {
       commit('RESET_STATE')
       resolve()
     })
-  }
+  },
+ 
 }
 
 export default {

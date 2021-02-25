@@ -21,3 +21,13 @@ export function logout() {
     method: 'post'
   })
 }
+
+// export function addCategory(data){
+//   return request({
+//     url: '/categories',
+//     method: 'post',
+//     data
+//   })
+// }
+
+

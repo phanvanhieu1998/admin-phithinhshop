@@ -5,6 +5,10 @@ import app from './modules/app'
 import settings from './modules/settings'
 import user from './modules/user'
 import category from './modules/category'
+import brand from './modules/brand'
+import slider from './modules/slider'
+import supplier from './modules/supplier'
+import product from './modules/product'
 
 Vue.use(Vuex)
 
@@ -13,7 +17,11 @@ const store = new Vuex.Store({
     app,
     settings,
     user,
-    category
+    category,
+    brand,
+    slider,
+    supplier,
+	product
   },
   getters
 })

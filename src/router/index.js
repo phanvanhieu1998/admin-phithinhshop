@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: 'Trang chủ', icon: 'dashboard' }
     }]
   },
 
@@ -79,20 +79,20 @@ export const constantRoutes = [
    {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
+   
     name: 'Example',
-    meta: { title: 'Danh sách Sliders', icon: 'el-icon-s-help' },
+    meta: { title: 'Danh mục sản phẩm ', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'huhu', icon: 'table' }
+        path: 'category',
+        name: 'category',
+        component: () => import('@/views/category/index'),
+        meta: { title: 'xem danh sách', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
-        component: () => import('@/views/hihi/index'),
+        component: () => import('@/views/slider/index'),
         meta: { title: 'Tree', icon: 'tree' }
       }
     ]
@@ -100,73 +100,53 @@ export const constantRoutes = [
 
 
   {
-    path: '/form',
+    path: '/brand',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: 'Form', 
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        name: 'brand', 
+        component: () => import('@/views/brand/index'),
+        meta: { title: 'Thương hiệu', icon: 'form' }
       }
     ]
   },
 
   {
-    path: '/nested',
+    path: '/slider',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    children: [
+      {
+        path: 'index',
+        name: 'slider', 
+        component: () => import('@/views/slider/index'),
+        meta: { title: 'Danh sách slider', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/product',
+    component: Layout,
+    // redirect: '/product1',
+    name: 'Product',
     meta: {
-      title: 'Nested',
+      title: 'Sản phẩm',
       icon: 'nested'
     },
     children: [
+  
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'index',
+        component: () => import('@/views/addProduct/index'),
+        name: 'product',
+        meta: { title: 'Thêm sản phẩm' }
       },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+	  {
+        path: 'product1',
+        component: () => import('@/views/product1/index'),
+        name: 'product1',
+        meta: { title: 'Danh sách sản phẩm' }
       }
     ]
   },
@@ -175,15 +155,18 @@ export const constantRoutes = [
 
 
     {
-    path: 'external-link',
+    path: '/supplier',
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'index',
+        name:'spuplier',
+        component: () => import('@/views/supplier/index'),
+        meta: { title: 'supplier', icon: 'link' }
       }
     ]
   },
+
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

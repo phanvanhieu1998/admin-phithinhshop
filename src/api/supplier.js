@@ -1,36 +1,36 @@
 import request from '@/utils/request'
 
-class UsersAPI  {
-    addCategory(data){
+class SupplierAPI  {
+    addSupplier(data){
          return request({
-           url: '/categories',
+           url: '/suppliers',
            method: 'post',
            data
          })
        }
     
-    listCategory(data){
+    listSupplier(data){
         return request({
-            url : '/categories',
+            url : '/suppliers',
             method:'get',
             params:data
         })
     }
-    deleteCategory(data){
+    deleteSupplier(data){
       return request({
-        url:`/categories/${data.id}`,
+        url:`/suppliers/${data.id}`,
         method:'delete',
       })
     }
     handleUpdate(data){
       return request({
-        url:`/categories/${data.id}`,
+        url:`/suppliers/${data.id}`,
         method:'put',
         data
       })
     }
     
   }
-  const Users = new UsersAPI("users");
-  export { Users as default };
+  const Supplier = new SupplierAPI("users");
+  export { Supplier as default };
   

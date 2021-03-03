@@ -1,36 +1,36 @@
 import request from '@/utils/request'
 
-class UsersAPI  {
-    addCategory(data){
+class SliderAPI  {
+    addSlider(data){
          return request({
-           url: '/categories',
+           url: '/sliders',
            method: 'post',
            data
          })
        }
     
-    listCategory(data){
+    listSlider(data){
         return request({
-            url : '/categories',
+            url : '/sliders',
             method:'get',
             params:data
         })
     }
-    deleteCategory(data){
+    deleteSlider(data){
       return request({
-        url:`/categories/${data.id}`,
+        url:`/sliders/${data.id}`,
         method:'delete',
       })
     }
     handleUpdate(data){
       return request({
-        url:`/categories/${data.id}`,
+        url:`/sliders/${data.id}`,
         method:'put',
         data
       })
     }
     
   }
-  const Users = new UsersAPI("users");
-  export { Users as default };
+  const Slider = new SliderAPI("slider");
+  export { Slider as default };
   

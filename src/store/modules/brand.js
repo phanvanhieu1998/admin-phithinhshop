@@ -1,15 +1,15 @@
-import User from '@/api/category'
+import Brands from '@/api/brands'
 
 
 const state = {
-  listData1:[],
+  listData:[],
   totalData:0,
   limit:10,
   page:1
 }
 
 const mutations = {
-  LIST_CATEGORY : (state,res) => state.listData1 = res,
+  LIST_CATEGORY : (state,res) => state.listData = res,
   set_page:(state, page) => state.page = page,
   set_totalData:(state, totalData) => state.totalData = totalData
  
@@ -25,10 +25,10 @@ const actions = {
         console.log(state)
         return new Promise((resolve,reject) =>{
     
-          User.addCategory(data)
+          Brands.addBrand(data)
     
           .then((res) =>{
-            
+            console.log( 'hihi'+res.data.name)
             resolve(res.message)
       
           })
@@ -37,17 +37,18 @@ const actions = {
           })
         })
       },
-    listCategory({state,commit}){
+    listBrand({state,commit}){
       return new Promise((resolve,reject) =>{
         let data = {
           page:state.page,
           limit:state.limit
         }
 
-        User.listCategory(data).then(res =>{
+        Brands.listBrand(data).then(res =>{
           commit('LIST_CATEGORY',res.data.result)
           commit('set_totalData',res.data.meta.total)
           resolve(res)
+         
         })
         .catch((error)=>{
           reject(error)
@@ -56,10 +57,10 @@ const actions = {
 
       })
     },
-    deleteCategory({ commit },item) {
+    deleteBrand({ commit },item) {
       
       return new Promise((resolve, reject) => {
-        User.deleteCategory(item) 
+        Brands.deleteBrand(item) 
           .then(response => {
             resolve(response);
           })
@@ -68,13 +69,12 @@ const actions = {
           });
       });
     },
-    handleUpdate({commit},data){
-		
+    handleUpdate({commit},item){
       return new Promise((resolve,reject) =>{
-        User.handleUpdate(data)
+        Brands.handleUpdate(item)
         .then(res =>{
           resolve(res)
-        commit
+         
          
         })
         .catch(error =>{

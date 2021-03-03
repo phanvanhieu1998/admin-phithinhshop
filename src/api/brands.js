@@ -1,36 +1,36 @@
 import request from '@/utils/request'
 
-class UsersAPI  {
-    addCategory(data){
+class BrandsAPI  {
+    addBrand(data){
          return request({
-           url: '/categories',
+           url: '/brands',
            method: 'post',
            data
          })
        }
     
-    listCategory(data){
+    listBrand(data){
         return request({
-            url : '/categories',
+            url : '/brands',
             method:'get',
             params:data
         })
     }
-    deleteCategory(data){
+    deleteBrand(data){
       return request({
-        url:`/categories/${data.id}`,
+        url:`/brands/${data.id}`,
         method:'delete',
       })
     }
     handleUpdate(data){
       return request({
-        url:`/categories/${data.id}`,
+        url:`/brands/${data.id}`,
         method:'put',
         data
       })
     }
     
   }
-  const Users = new UsersAPI("users");
-  export { Users as default };
+  const Brands = new BrandsAPI("brands");
+  export { Brands as default };
   

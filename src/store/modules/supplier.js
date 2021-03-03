@@ -1,15 +1,15 @@
-import User from '@/api/category'
+import Supplier from '@/api/supplier'
 
 
 const state = {
-  listData1:[],
+  listData2:[],
   totalData:0,
   limit:10,
   page:1
 }
 
 const mutations = {
-  LIST_CATEGORY : (state,res) => state.listData1 = res,
+  LIST_CATEGORY : (state,res) => state.listData2 = res,
   set_page:(state, page) => state.page = page,
   set_totalData:(state, totalData) => state.totalData = totalData
  
@@ -25,7 +25,7 @@ const actions = {
         console.log(state)
         return new Promise((resolve,reject) =>{
     
-          User.addCategory(data)
+          Supplier.addSupplier(data)
     
           .then((res) =>{
             
@@ -37,14 +37,14 @@ const actions = {
           })
         })
       },
-    listCategory({state,commit}){
+    listSupplier({state,commit}){
       return new Promise((resolve,reject) =>{
         let data = {
           page:state.page,
           limit:state.limit
         }
 
-        User.listCategory(data).then(res =>{
+        Supplier.listSupplier(data).then(res =>{
           commit('LIST_CATEGORY',res.data.result)
           commit('set_totalData',res.data.meta.total)
           resolve(res)
@@ -56,10 +56,10 @@ const actions = {
 
       })
     },
-    deleteCategory({ commit },item) {
+    deleteSupplier({ commit },item) {
       
       return new Promise((resolve, reject) => {
-        User.deleteCategory(item) 
+        Supplier.deleteSupplier(item) 
           .then(response => {
             resolve(response);
           })
@@ -68,13 +68,12 @@ const actions = {
           });
       });
     },
-    handleUpdate({commit},data){
-		
+    handleUpdate({commit},item){
       return new Promise((resolve,reject) =>{
-        User.handleUpdate(data)
+        Supplier.handleUpdate(item)
         .then(res =>{
           resolve(res)
-        commit
+         
          
         })
         .catch(error =>{

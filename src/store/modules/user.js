@@ -2,6 +2,7 @@ import { login, logout, getInfo,} from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
+
 import axios from 'axios'
 import Vue from 'vue'
 
@@ -13,7 +14,8 @@ Vue.use(VueAxios, axios)
     return {
       token: getToken(),
       name: '',
-      avatar: ''
+      avatar: '',
+	  profile:''
     }
   }
 
@@ -22,6 +24,9 @@ Vue.use(VueAxios, axios)
 const mutations = {
   RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
+  },
+  SET_PROFILE:(state,profile) =>{
+	state.profile = profile	
   },
   SET_TOKEN: (state, token) => {
     state.token = token
@@ -60,13 +65,13 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const { data } = response
-
+		console.log(response.data)
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
 
         const { name, avatar } = data
-
+		commit('SET_PROFILE',response.data)
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         resolve(data)
@@ -74,6 +79,29 @@ const actions = {
         reject(error)
       })
     })
+  },
+  updateProfile({commit},data){
+	console.log(data)
+	return new Promise((resolve, reject) => {
+	axios.put('https://api.meiboutiques.work/v1/admin/profile',data,
+	{
+		headers: {
+			
+			['Authorization'] : `Bearer ${getToken()}`
+		   
+		}
+	  },)
+        // updateProfile(data) 
+          .then(response => {
+            resolve(response);
+			console.log(data)
+			commit
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+
   },
 
   // user logout

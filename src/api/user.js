@@ -21,6 +21,13 @@ export function logout() {
     method: 'post'
   })
 }
+export function updateProfile(data){
+	return request({
+		url:'/profile',
+		method:'put',
+		data
+	})
+}
 
 // export function addCategory(data){
 //   return request({

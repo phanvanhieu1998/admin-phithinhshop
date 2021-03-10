@@ -146,7 +146,7 @@ import {mapState} from 'vuex'
         })
       },
       handleEdit(row){
-        console.log('kaka'+row)
+        console.log(row)
          this.editing=true
          this.editingItem = row
       

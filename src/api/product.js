@@ -26,9 +26,10 @@ class ProductAPI  {
       return request({
         url:`/products/${data.id}`,
         method:'put',
-        data
+		data
       })
     }
+
     
   }
   const Product = new ProductAPI("products");

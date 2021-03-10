@@ -28,7 +28,7 @@ const actions = {
           Brands.addBrand(data)
     
           .then((res) =>{
-            console.log( 'hihi'+res.data.name)
+            
             resolve(res.message)
       
           })
@@ -51,7 +51,7 @@ const actions = {
          
         })
         .catch((error)=>{
-          reject(error)
+          reject(error) 
         })
         
 

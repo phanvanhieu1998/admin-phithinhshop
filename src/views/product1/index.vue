@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+	
 
       <el-table class="haha"
       v-loading="loading"
@@ -20,14 +20,16 @@
       label="Images"
       >
         <template slot-scope="scope">
-          <el-image
+			
+          <el-image v-for="(item, index) in scope.row.images" :key="index"
+			
             style="width: 100px; height: 100px"
-            :src="scope.row.images[0]"
+            :src="item"
             ></el-image>
 			
       </template>  
 
-    </el-table-column>
+    </el-table-column> -->
     <el-table-column
        label="Sản phẩm"
      >
@@ -38,53 +40,35 @@
 			<h5>Tên sản phẩm: </h5>
 			<span>{{scope.row.name}}</span><br>
 			<h5>Màu sắc: </h5>
-			<span style="color:red">{{scope.row.colors[0,1]}}</span><br>
+			<span v-for="(item) in scope.row.colors" :key="item.id" style="color:red">{{item}},</span><br>
 			<h5>Kích thước: </h5>
-			<span>{{scope.row.sizes[0]}}</span><br>
+			<span  v-for="(item) in scope.row.sizes" :key="item.id" style="color:red">{{item}},</span><br>
 			<h5>Thương hiệu: </h5>
-			<span>{{scope.row.brand.name}}</span><br>		
+		
+			<span  >{{scope.row.brand.name}}</span><br>		
 			<h5>Danh mục: </h5>
 			<span>{{scope.row.category.name}}</span><br>
 			<h5>Nhà cung cấp: </h5>
 			<span>{{scope.row.supplier.name}}</span><br>
       </template>
+	  
     </el-table-column>  
-	    <el-table-column
-       label="Gía"
-    >
+   <el-table-column
+       label="Gia">
+     
         <template slot-scope="scope">
-			<h5>Gía nhập: </h5>
-			 <el-input v-if="editing && editingItem.id == scope.row.id" v-model="editingItem.import_price"></el-input>
-			<span > {{scope.row.import_price}} VNĐ</span><br>
-			<h5>Gía bán: </h5>
-			<span>  {{scope.row.status}} VNĐ</span><br>
-		
+            
+        <el-tag  style="margin-left: 10px">{{ scope.row.import_price }}</el-tag>
       </template>
     </el-table-column>  
-    <el-table-column
-      label="Gía"
-     >
-      <template slot-scope="">
-      
-           
-      
-      </template>
-    </el-table-column>
+
     <el-table-column>
       
-         <template slot="header" slot-scope="" >
-        <el-input
-          v-model="search"
-          size="mini"
-          placeholder="Type to search"/>
-      </template>
-      
+  
       <template slot-scope="scope">
-        <el-button v-if=" editing && editingItem.id == scope.row.id"
-        @click="handleUpdate()"
-        size="mini"
-        >Update</el-button>
-        <el-button v-else
+	
+       
+        <el-button
           size="mini"
          
           @click="handleEdit(scope.row)"><i class="el-icon-edit"></i> Edit</el-button>
@@ -126,7 +110,7 @@ import {mapState} from 'vuex'
  export default {
     data() {
       return {
-        search:'',
+        searchx:'',
        loading:false,
         dialogFormAdd: false,
         form: {
@@ -136,11 +120,15 @@ import {mapState} from 'vuex'
         },
         formLabelWidth: '120px',
         editing:false,
-		editingItem:{
-			category_id:'',
-			supplier_id:'',
-			brand_id:'',
-		}
+		// editingItem:{
+		// 	category_id:'',
+		// 	supplier_id:'',
+		// 	brand_id:'',
+		// 	old_images:'',
+		// 	import_price:'',
+		// 	brand:'',
+	
+		// }
       
 			
 		
@@ -168,29 +156,32 @@ import {mapState} from 'vuex'
 
  
       handleEdit(row){
-		
-         this.editing=true
+	
+        //  this.editing=true
 		 
-         this.editingItem = Object.assign(this.editingItem, row)
-		this.editingItem.category_id = row.category.id
-		this.editingItem.brand_id = row.brand.id
-		this.editingItem.supplier_id = row.supplier.id
-		console.log(this.editingItem)
+        //  this.editingItem = Object.assign(this.editingItem, row)
+		// this.editingItem.category_id = row.category.id
+		// this.editingItem.brand_id = row.brand.id
+		//  this.editingItem.supplier_id = row.supplier.id
+		//  this.editingItem.old_images = row.images_origin
+		//  this.editingItem.import_price = row.import_price
+		//  this.editingItem.brand = row.brand
+	
+		//  delete this.editingItem.images_origin
+		//  delete this.editingItem.category
+		//  delete this.editingItem.brand
+		//  delete this.editingItem.supplier
+		//  console.log(row)
+		this.$store.commit('product/current',row)
+		
+		  this.$router.push('/product/updateProduct')
+		
 	
 	
         
       
       },
-      handleUpdate(){
-		  console.log('kaka11')
-        this.editing=false
-		console.log(this.category_id)
-        this.$store.dispatch('product/handleUpdate',this.editingItem).then((res) =>{
-          this.loadData()
-		  
-        })
-         
-      },
+
           open1() {
         this.$message({
           message: 'Success',
@@ -205,11 +196,11 @@ import {mapState} from 'vuex'
             this.loadData()
          })
            
-           
+
       
       },
-      
-      loadData(){
+     loadData(){
+		
         this.loading=true
          this.$store.dispatch('product/listProduct').then((res)=>{
        
@@ -227,8 +218,9 @@ import {mapState} from 'vuex'
     }
     },
     mounted(){
-	
-      this.loadData()
+		
+		this.loadData()
+
     },
     computed:{
       ...mapState({

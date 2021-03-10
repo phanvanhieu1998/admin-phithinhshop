@@ -49,7 +49,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'hihi',
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Trang chủ', icon: 'dashboard' }
     }]
@@ -102,15 +102,18 @@ export const constantRoutes = [
   {
     path: '/brand',
     component: Layout,
+	// meta: { title: 'Danh mục sản phẩm ', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
+        path: '',
         name: 'brand', 
         component: () => import('@/views/brand/index'),
         meta: { title: 'Thương hiệu', icon: 'form' }
-      }
+      },
+
     ]
   },
+
 
   {
     path: '/slider',
@@ -147,11 +150,29 @@ export const constantRoutes = [
         component: () => import('@/views/product1/index'),
         name: 'product1',
         meta: { title: 'Danh sách sản phẩm' }
+      },
+	  {
+        path: 'updateProduct',
+        name: 'updateProduct', 
+        component: () => import('@/views/updateProduct/index'),
+         meta: { title: 'UpdateProduct'}
       }
     ]
   },
 
 
+  {
+    path: '/updateProfile',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name:'updateProfile',
+        component: () => import('@/views/updateProfile/index'),
+        meta: { title: '', icon: 'link' }
+      }
+    ]
+  },
 
 
     {

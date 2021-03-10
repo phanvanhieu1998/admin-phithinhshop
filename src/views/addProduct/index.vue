@@ -142,7 +142,7 @@
       
   
 				<el-form-item>
-					<input type="file"    @change="handleFileUpload">
+					<input type="file" multiple ref="files"   @change="handleFileUpload">
 				</el-form-item>
     		
 			</el-form>
@@ -189,6 +189,7 @@ export default {
   },
   methods:{
 	   submitFile(){
+		   console.log(this.form)
 		  this.open1()
         /*  
                 Initialize the form data
@@ -197,12 +198,11 @@ export default {
             let formData = new FormData();
               this.dialogFormAdd = false
                
-           
-            /*
-                Add the form data we need to submit
-            */
-            formData.append('images[]', this.form.images);
-            formData.append('name', this.form.name);
+                  for( var i = 0; i < this.form.images.length; i++ ){
+          let file = this.form.images[i];
+
+          formData.append('images[' + i + ']', file);
+		  formData.append('name', this.form.name);
 			formData.append('sku', this.form.sku);
             formData.append('import_price', this.form.import_price);
 			formData.append('price', this.form.price);
@@ -216,7 +216,27 @@ export default {
 			formData.append('category_id', this.value1);
 			formData.append('brand_id', this.value);
 			formData.append('supplier_id', this.value2);
-            console.log(formData)
+        }
+           
+            /*
+                Add the form data we need to submit
+            */
+            // formData.append('images[]', this.form.images);
+            // formData.append('name', this.form.name);
+			// formData.append('sku', this.form.sku);
+            // formData.append('import_price', this.form.import_price);
+			// formData.append('price', this.form.price);
+			// formData.append('amount', this.form.amount);
+			// formData.append('summary', this.form.summary);
+			// formData.append('colors', this.form.colors);
+			// formData.append('sizes', this.form.sizes);
+			// formData.append('meta_title', this.form.meta_title);
+			// formData.append('description', this.form.description);
+			// formData.append('meta_description', this.form.meta_description);
+			// formData.append('category_id', this.value1);
+			// formData.append('brand_id', this.value);
+			// formData.append('supplier_id', this.value2);
+            // console.log(formData)
             
        
         /*
@@ -235,7 +255,7 @@ export default {
                
             ).then(function(){
               console.log('SUCCESS!!');
-				this.loadData()
+				
                 
                  
                   
@@ -254,10 +274,10 @@ export default {
       /*
         Handles a change on the file upload
       */
-      handleFileUpload(event){
-         this.form.images = event.target.files[0];
-		//  this.form.images = this.$refs.fileImage.files[0];
-		 console.log('hu'+this.form.images)
+      handleFileUpload(){
+        //  this.form.images = event.target.files;
+		  this.form.images = this.$refs.files.files;
+		
       
       },
 	    loadData(){
@@ -271,7 +291,7 @@ export default {
       .catch((error)=>{
         this.loading = false
       })
-        
+    
       },
 	      loadData1(){
          this.loading=true

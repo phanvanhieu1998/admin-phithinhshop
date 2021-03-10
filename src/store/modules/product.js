@@ -5,14 +5,16 @@ const state = {
   listData:[],
   totalData:0,
   limit:10,
-  page:1
+  page:1,
+  current:{}
 }
 
 const mutations = {
+	current : (state,current) => state.current = current,
   LIST_CATEGORY : (state,res) => state.listData = res,
   set_page:(state, page) => state.page = page,
-  set_totalData:(state, totalData) => state.totalData = totalData
- 
+  set_totalData:(state, totalData) => state.totalData = totalData,
+
 
 }
 
@@ -28,7 +30,7 @@ const actions = {
           Product.addProduct(data)
     
           .then((res) =>{
-            console.log( 'hihi'+res.data.name)
+          
             resolve(res.message)
       
           })
@@ -43,14 +45,14 @@ const actions = {
           page:state.page,
           limit:state.limit
         }
-		console.log('haha')
+		
         Product.listProduct(data).then(res =>{
           commit('LIST_CATEGORY',res.data.result)
 		  
-		  
+
           commit('set_totalData',res.data.meta.total)
           resolve(res)
-         
+         console.log(res.data.meta.total)
         })
         .catch((error)=>{
           reject(error)
@@ -59,6 +61,7 @@ const actions = {
 
       })
     },
+
     deleteProduct({ commit },item) {
       
       return new Promise((resolve, reject) => {
@@ -73,13 +76,14 @@ const actions = {
       });
     },
     handleUpdate({commit},data){
-		console.log('color'+data.category_id)
+		// console.log( data)
       return new Promise((resolve,reject) =>{
+
         Product.handleUpdate(data)
+		
         .then(res =>{
           resolve(res)
-		  console.log('up'+res)
-		  commit
+		//   console.log(res.data)
         })
         .catch(error =>{
           reject(error)

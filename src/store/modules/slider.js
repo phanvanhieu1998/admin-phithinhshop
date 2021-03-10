@@ -28,7 +28,7 @@ const actions = {
           Slider.addSlider(data)
     
           .then((res) =>{
-            console.log(res)
+         
             resolve(res.message)
             commit
           })

@@ -79,7 +79,7 @@
 			</el-form>
 
 		</el-col>
-	
+	{{listData1}}
 		<el-col :span="12">
 			<h5>Danh mục sản phẩm</h5>
 			<el-select v-model="value1" placeholder="Chọn danh mục sản phấm">
@@ -100,7 +100,7 @@
 				</el-option>
 			</el-select>
 				<h5>Nhà cung cấp</h5>
-				<el-select v-model="value2"  placeholder="Chọn nhà cung cấp">
+				<el-select v-if="listData2" v-model="value2"  placeholder="Chọn nhà cung cấp">
 				<el-option
 				v-for="item in listData2"
 				:key="item.id"
@@ -280,36 +280,36 @@ export default {
 		
       
       },
-	    loadData(){
-        this.loading=true
-		 this.$store.dispatch('supplier/listSupplier')
-		 this.$store.dispatch('category/listCategory')
-         this.$store.dispatch('brand/listBrand').then((res)=>{
+	
+	//      loadData(){
+    //      this.loading=true
+	//  	 this.$store.dispatch('supplier/listSupplier')
+	//  	 this.$store.dispatch('category/listCategory')
+    //       this.$store.dispatch('brand/listBrand').then((res)=>{
        
-        this.loading = false
-      })
-      .catch((error)=>{
-        this.loading = false
-      })
+    //      this.loading = false
+    //    })
+    //    .catch((error)=>{
+    //      this.loading = false
+    //    })
     
-      },
-	      loadData1(){
-         this.loading=true
-       this.$store.dispatch('category/listCategory').then((res)=>{
-       
-         this.loading = false
-       })
-       .catch((error)=>{
-         this.loading = false
-       })
-        
-       },
+    //    },
+
   },
     mounted(){
 //    this.loadData1()
-      this.loadData()
+    //   this.loadData()
+	console.log('kiki')
 	  
     },
+	  watch:{
+		  listData(newVal,oldVal){
+			  console.log('------')
+			    console.log(newVal,oldVal)
+				  console.log('------')
+
+		  }
+	  },
       computed:{
       ...mapState({
           listData: state => state.brand.listData,

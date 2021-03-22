@@ -21,7 +21,7 @@
     <el-button type="primary"   @click="addCategory">Confirm</el-button>
   </span>
 </el-dialog>
-
+		{{haha}}
       <el-table class="haha"
       v-loading="loading"
     :data="listData1.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
@@ -58,6 +58,17 @@
       <template slot-scope="scope">
           <el-input size="mini" v-if="editing && editingItem.id == scope.row.id" v-model="editingItem.name"></el-input>
             <el-tag v-else size="medium">{{ scope.row.name }}</el-tag>
+
+           
+      
+      </template>
+    </el-table-column>
+	    <el-table-column
+      label="slug"
+      width="250">
+      <template slot-scope="scope">
+          <el-input size="mini" v-if="editing && editingItem.id == scope.row.id" v-model="editingItem.slug"></el-input>
+            <el-tag v-else size="medium">{{ scope.row.slug }}</el-tag>
 
            
       
@@ -104,7 +115,7 @@
       
       background layout="prev, pager, next" @current-change="set_page" :page-size="limit" :total="totalData">
     </el-pagination>
-
+{{page}}
   </div>
   
 </template>
@@ -146,9 +157,10 @@ import {mapState} from 'vuex'
         })
       },
       handleEdit(row){
-        console.log(row)
+       
          this.editing=true
          this.editingItem = row
+		 
       
         
       
@@ -195,15 +207,18 @@ import {mapState} from 'vuex'
     }
     },
     mounted(){
-   
+		
       this.loadData()
+	
     },
     computed:{
       ...mapState({
           listData1: state => state.category.listData1,
           totalData : state => state.category.totalData,
           page: state =>state.category.page,
-          limit : state =>state.category.limit
+          limit : state =>state.category.limit,
+		  haha: state =>state.category.men_fashion
+
       }),
      
 

@@ -50,6 +50,7 @@
 			<span>{{scope.row.category.name}}</span><br>
 			<h5>Nhà cung cấp: </h5>
 			<span>{{scope.row.supplier.name}}</span><br>
+			
       </template>
 	  
     </el-table-column>  

@@ -137,6 +137,14 @@
 							v-model="form.sizes">
 					</el-input>
 				</el-form-item> 
+				<el-form-item label="Giam">
+						<el-input
+							type="text"
+							autosize
+							placeholder="Số % giảm"
+							v-model="form.discount">
+					</el-input>
+				</el-form-item>
 
 				 	       <template slot-scope="">
 			
@@ -236,6 +244,8 @@ export default {
 			  supplier_id:this.form.value2,
 		  status:this.form.status,
 			   brand_id:this.form.value,
+			   description:this.form.description,
+			   discount:this.form.discount
 			  
 			
 			

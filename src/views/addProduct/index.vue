@@ -31,6 +31,7 @@
 							placeholder="Nhập giá nhập sản phẩm "
 							v-model="form.import_price">
 					</el-input>
+				
 				</el-form-item>
 
 					<el-form-item label="Gía bán sản phẩm" >
@@ -79,7 +80,7 @@
 			</el-form>
 
 		</el-col>
-	{{listData1}}
+
 		<el-col :span="12">
 			<h5>Danh mục sản phẩm</h5>
 			<el-select v-model="value1" placeholder="Chọn danh mục sản phấm">
@@ -136,6 +137,14 @@
 							v-model="form.sizes">
 					</el-input>
 				</el-form-item>
+				<el-form-item label="Giảm giá " >
+					<el-input
+							type="text"
+							autosize
+							placeholder="Số % giảm"
+							v-model="form.discount">
+					</el-input>
+				</el-form-item>
 
 				 	 
      			
@@ -179,7 +188,8 @@ export default {
 		 sizes:'',
 		meta_title:'',
 		meta_description:'',
-		description:''
+		description:'',
+		discount:''
 	 },
 	 value:'',
 	 value1:'',
@@ -213,6 +223,7 @@ export default {
 			formData.append('meta_title', this.form.meta_title);
 			formData.append('description', this.form.description);
 			formData.append('meta_description', this.form.meta_description);
+			formData.append('discount',this.form.discount)
 			formData.append('category_id', this.value1);
 			formData.append('brand_id', this.value);
 			formData.append('supplier_id', this.value2);
@@ -281,33 +292,29 @@ export default {
       
       },
 	
-	//      loadData(){
-    //      this.loading=true
-	//  	 this.$store.dispatch('supplier/listSupplier')
-	//  	 this.$store.dispatch('category/listCategory')
-    //       this.$store.dispatch('brand/listBrand').then((res)=>{
+	      loadData(){
+          this.loading=true
+	  	 this.$store.dispatch('supplier/listSupplier')
+	  	 this.$store.dispatch('category/listCategory')
+           this.$store.dispatch('brand/listBrand').then((res)=>{
        
-    //      this.loading = false
-    //    })
-    //    .catch((error)=>{
-    //      this.loading = false
-    //    })
+          this.loading = false
+        })
+        .catch((error)=>{
+          this.loading = false
+        })
     
-    //    },
+        },
 
   },
     mounted(){
 //    this.loadData1()
-    //   this.loadData()
+      this.loadData()
 	console.log('kiki')
-	  
     },
 	  watch:{
 		  listData(newVal,oldVal){
-			  console.log('------')
-			    console.log(newVal,oldVal)
-				  console.log('------')
-
+			 
 		  }
 	  },
       computed:{

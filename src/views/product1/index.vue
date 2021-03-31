@@ -59,7 +59,10 @@
      
         <template slot-scope="scope">
             
-        <el-tag  style="margin-left: 10px">{{ scope.row.import_price }}</el-tag>
+        <el-tag  style="margin-left: 10px">{{ scope.row.import_price 
+		
+			
+			}}</el-tag>
       </template>
     </el-table-column>  
 

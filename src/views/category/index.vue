@@ -63,17 +63,7 @@
       
       </template>
     </el-table-column>
-	    <el-table-column
-      label="slug"
-      width="250">
-      <template slot-scope="scope">
-          <el-input size="mini" v-if="editing && editingItem.id == scope.row.id" v-model="editingItem.slug"></el-input>
-            <el-tag v-else size="medium">{{ scope.row.slug }}</el-tag>
 
-           
-      
-      </template>
-    </el-table-column>
     <el-table-column>
          <template slot="header" slot-scope="" >
         <el-input

@@ -9,6 +9,8 @@ import brand from './modules/brand'
 import slider from './modules/slider'
 import supplier from './modules/supplier'
 import product from './modules/product'
+import contact from './modules/contact'
+import orders from './modules/orders'
 
 Vue.use(Vuex)
 
@@ -21,7 +23,9 @@ const store = new Vuex.Store({
     brand,
     slider,
     supplier,
-	product
+	product,
+	contact,
+	orders
   },
   getters
 })

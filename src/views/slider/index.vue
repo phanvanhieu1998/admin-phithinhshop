@@ -185,7 +185,7 @@ import {mapState} from 'vuex'
         /*
           Make the request to the POST /single-file URL
         */
-            axios.post( 'https://api.meiboutiques.work/v1/admin/sliders',
+            axios.post( 'https://api.phanhieu.tokyo/v1/admin/sliders',
               
                 formData,
                 {

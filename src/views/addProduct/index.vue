@@ -200,7 +200,7 @@ export default {
   methods:{
 	   submitFile(){
 		   console.log(this.form)
-		  this.open1()
+		
         /*  
                 Initialize the form data
             */
@@ -253,7 +253,7 @@ export default {
         /*
           Make the request to the POST /single-file URL
         */
-            axios.post( 'https://api.meiboutiques.work/v1/admin/products',
+            axios.post( 'https://api.phanhieu.tokyo/v1/admin/products',
               
                 formData,
                 {
@@ -264,13 +264,14 @@ export default {
                 }
               },
                
-            ).then(function(){
-              console.log('SUCCESS!!');
+            ).then((res) =>{
+				this.open1()
+			})
 				
                 
                  
                   
-           })
+           
         .catch(function(){
           console.log('FAILURECC!!');
         });

@@ -19,17 +19,22 @@
      <el-table-column
       label="Images"
       >
-        <template slot-scope="scope">
+        <template slot-scope="scope" v-if="scope.row.images"> 
 			
-          <el-image v-for="(item, index) in scope.row.images" :key="index"
+          <!-- <el-image v-for="(item, index) in scope.row.images" :key="index"
 			
             style="width: 100px; height: 100px"
             :src="item"
             ></el-image>
-			
+			 -->
+			 <el-image style="width:100px"
+			 
+			 :src="scope.row.images[0]">
+				
+			 </el-image>
       </template>  
 
-    </el-table-column> -->
+    </el-table-column> 
     <el-table-column
        label="Sản phẩm"
      >
@@ -176,9 +181,10 @@ import {mapState} from 'vuex'
 		//  delete this.editingItem.brand
 		//  delete this.editingItem.supplier
 		//  console.log(row)
-		this.$store.commit('product/current',row)
+		 this.$store.commit('product/current',row)
 		
 		  this.$router.push('/product/updateProduct')
+		
 		
 	
 	

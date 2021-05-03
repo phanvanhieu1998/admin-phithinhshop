@@ -101,8 +101,8 @@ export default {
     }
     return {
       loginForm: {
-        email: 'phanvanhieu@gmail.com',
-        password: 'llllll'
+        email: null,
+        password: null
       },
       loginRules: {
         email: [

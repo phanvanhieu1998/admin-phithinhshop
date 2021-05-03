@@ -1,21 +1,31 @@
 <template>
   <div>
-	  hehe
+	  {{list}}
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
 	data(){
 		return{
 			
 		}
 	},
+	mounted(){
+		this.listOrders()
+	},
 	methods:{
-		listOders(){
+		listOrders(){
 			this.$store.dispatch('orders/listOrders')
 		}
+	},
+	computed:{
+		...mapState({
+			list : state => state.orders.listOrders
+		})
 	}
+
 }
 </script>
 

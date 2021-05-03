@@ -64,7 +64,7 @@
      
         <template slot-scope="scope">
             
-        <el-tag  style="margin-left: 10px">{{ scope.row.import_price 
+        <el-tag  style="margin-left: 10px">{{ scope.row.price 
 		
 			
 			}}</el-tag>

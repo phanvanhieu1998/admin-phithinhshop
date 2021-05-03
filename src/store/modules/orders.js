@@ -1,65 +1,65 @@
-import Orders from '@/api/contact'
+import Orders from '@/api/orders'
 
 
 const state = {
-  listOrders:[],
+    listOrders: [],
 
 
 }
 
 const mutations = {
 
-	SET_LIST_ORDERS:(state,data) => state.listOrders = data,
-	
+    SET_LIST_ORDERS: (state, data) => state.listOrders = data,
+
 }
 
 const getters = {
-  
+
 }
 
 const actions = {
 
-    listOrders({commit}){
-	
-      return new Promise((resolve,reject) =>{
-        Orders.listOrders()
-        .then(res =>{
-          resolve(res.data.result)
-         
-         commit('SET_LIST_ORDERS',res.data.result)
-	
+    listOrders({ commit }) {
+
+        return new Promise((resolve, reject) => {
+            Orders.listOrders()
+                .then(res => {
+                    resolve(res.data.result)
+
+                    commit('SET_LIST_ORDERS', res.data.result)
+
+                })
+                .catch(error => {
+                    reject(error)
+                })
         })
-        .catch(error =>{
-          reject(error)
-        })
-      })
     },
-	
+
     // handleUpdate({commit},item){
-	// 	return new Promise((resolve,reject) =>{
-	// 	  Contact.handleUpdate(item)
-	// 	  .then(res =>{
-	// 		resolve(res)
-		   
-		   
-	// 	  })
-	// 	  .catch(error =>{
-	// 		reject(error)
-	// 	  })
-	// 	})
-	//   },
-	//   deleteContact({ commit },item) {
-      
-	// 	return new Promise((resolve, reject) => {
-	// 	  Contact.deleteContact(item) 
-	// 		.then(response => {
-	// 		  resolve(response);
-	// 		})
-	// 		.catch(error => {
-	// 		  reject(error);
-	// 		});
-	// 	});
-	//   },
+    // 	return new Promise((resolve,reject) =>{
+    // 	  Contact.handleUpdate(item)
+    // 	  .then(res =>{
+    // 		resolve(res)
+
+
+    // 	  })
+    // 	  .catch(error =>{
+    // 		reject(error)
+    // 	  })
+    // 	})
+    //   },
+    //   deleteContact({ commit },item) {
+
+    // 	return new Promise((resolve, reject) => {
+    // 	  Contact.deleteContact(item) 
+    // 		.then(response => {
+    // 		  resolve(response);
+    // 		})
+    // 		.catch(error => {
+    // 		  reject(error);
+    // 		});
+    // 	});
+    //   },
 
 }
 
@@ -70,4 +70,3 @@ export default {
     actions,
     getters
 }
-

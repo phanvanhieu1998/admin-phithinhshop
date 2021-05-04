@@ -2,7 +2,7 @@
   <div class="dashboard-container">
 	  <div class="dashboard__top">
 		<el-row :gutter="20">
-			<el-col :span="9" :md="24">
+			<el-col :span="9" :md="24" :lg="9">
 				<el-card class="box-card">
 					<el-row :gutter="20">
 						<el-col :span="14" >
@@ -24,7 +24,7 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="5" :md="8">
+			<el-col :span="5" :md="8" :lg="5">
 				<el-card class="box-card">
 					<div class="box-card-flex">
 						<div class="box-card-icon">
@@ -50,7 +50,7 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="5" :md="8">
+			<el-col :span="5" :md="8" :lg="5">
 				<el-card class="box-card">
 					<div class="box-card-flex">
 						<div class="box-card-icon">
@@ -76,7 +76,7 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="5" :md="8">
+			<el-col :span="5" :md="8" :lg="5">
 				<el-card class="box-card">
 					<div class="box-card-flex">	
 						<div class="box-card-icon">
@@ -105,7 +105,7 @@
 		</el-row>
 	  </div>
 	 <el-row :gutter="20">
-		<el-col :span="16" :md="24">
+		<el-col :span="16" :md="24" :lg="16">
 			<el-card class="box-card">
 				 
 				 <el-row :gutter="20">
@@ -125,7 +125,7 @@
 						
 						</div>
 					</el-col>
-					<el-col :span="16">
+					<el-col :span="16" :lg="16">
 						<LineChart/>
 					</el-col>
 				
@@ -134,17 +134,29 @@
 
 		</el-col>
 
-		<el-col :span="8" :md="24">
+		<el-col :span="8" :md="24" :lg="8">
 			<el-card class="box-card">
 				  <PieChart/>
 			</el-card>
+			
 				 
 		</el-col>
 	
-	</el-row>
+		</el-row>
 	
-	 
+		<footer class="footer">
+			<div class="footer__text">
+				<div >
+					<span>2021 Phí Thịnh Shop</span>
+				</div>
+
+				<div>
+					<span>Design & Dev by Phan Hieu</span>
+				</div>
+			</div>
+		</footer>
   </div>
+  
 </template>
 
 <script>
@@ -172,6 +184,7 @@ export default {
 	background-color: rgb(237, 239, 247);
 	height: 100%;
 	padding: 20px;
+	margin-bottom: 50px;
 }
 .dashboard__top{
 	padding-bottom: 10px;
@@ -229,5 +242,18 @@ export default {
 	flex-direction: column;
 }
 
-
+.footer{
+	width: 100%;
+	height: 50px;
+	background-color: #edeff7;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+}
+.footer__text{
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+}
 </style>

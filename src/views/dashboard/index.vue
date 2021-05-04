@@ -2,10 +2,10 @@
   <div class="dashboard-container">
 	  <div class="dashboard__top">
 		<el-row :gutter="20">
-			<el-col :span="9">
+			<el-col :span="9" :md="24">
 				<el-card class="box-card">
 					<el-row :gutter="20">
-						<el-col :span="14">
+						<el-col :span="14" >
 							<div class="dashboard__top__text">
 								<h2>Chào mừng bạn!</h2>
 								<span >Trang quản trị của Phí Thịnh Shop</span>
@@ -24,7 +24,7 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="5">
+			<el-col :span="5" :md="8">
 				<el-card class="box-card">
 					<div class="box-card-flex">
 						<div class="box-card-icon">
@@ -50,7 +50,7 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="5">
+			<el-col :span="5" :md="8">
 				<el-card class="box-card">
 					<div class="box-card-flex">
 						<div class="box-card-icon">
@@ -76,7 +76,7 @@
 				</el-card>
 			</el-col>
 
-			<el-col :span="5">
+			<el-col :span="5" :md="8">
 				<el-card class="box-card">
 					<div class="box-card-flex">	
 						<div class="box-card-icon">
@@ -105,7 +105,7 @@
 		</el-row>
 	  </div>
 	 <el-row :gutter="20">
-		<el-col :span="16">
+		<el-col :span="16" :md="24">
 			<el-card class="box-card">
 				 
 				 <el-row :gutter="20">
@@ -134,7 +134,7 @@
 
 		</el-col>
 
-		<el-col :span="8">
+		<el-col :span="8" :md="24">
 			<el-card class="box-card">
 				  <PieChart/>
 			</el-card>
@@ -174,19 +174,22 @@ export default {
 	padding: 20px;
 }
 .dashboard__top{
-	padding-bottom: 30px;
+	padding-bottom: 10px;
+
 }
 .dashboard__top__text{
 	display: flex;
 	flex-direction: column;
+	
 }
 .dashboard__top__text h2{
 	margin: 0;
 }
 .dashboard__top__img img{
 	position: absolute;
-	top:50px;
-	width: 100%;
+	top:-30px;
+	right: 0;
+	width: 90%;
 	
 }
 .dashboard__top__text span{
@@ -194,6 +197,9 @@ export default {
 }
 .dashboard__top__img{
 	position: relative;
+}
+.dashboard__top .box-card{
+	margin-bottom: 20px;
 }
 .box-card-icon{
 	display: flex;

@@ -9,7 +9,7 @@
 				{{current}}
 			</el-card>
 		</div>
-		{{value}}
+	
 		
 		<div>
 			<el-card class="box-card">

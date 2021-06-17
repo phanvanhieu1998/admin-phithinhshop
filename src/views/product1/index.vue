@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-	
-
       <el-table class="haha"
       v-loading="loading"
     :data="listData"
@@ -25,8 +23,8 @@
 			
             style="width: 100px; height: 100px"
             :src="item"
-            ></el-image>
-			 -->
+            ></el-image> -->
+			
 			 <el-image style="width:100px"
 			 
 			 :src="scope.row.images[0]">
@@ -54,7 +52,9 @@
 			<h5>Danh mục: </h5>
 			<span>{{scope.row.category.name}}</span><br>
 			<h5>Nhà cung cấp: </h5>
-			<span>{{scope.row.supplier.name}}</span><br>
+			<span>{{scope.row.supplier.name}}</span><br> 
+			<h5>Số lượng: </h5>
+			<span>{{scope.row.amount}}</span><br> 
 			
       </template>
 	  
@@ -64,7 +64,7 @@
      
         <template slot-scope="scope">
             
-        <el-tag  style="margin-left: 10px">{{ scope.row.price 
+        <el-tag  style="margin-left: 10px">{{ scope.row.sale_price 
 		
 			
 			}}</el-tag>

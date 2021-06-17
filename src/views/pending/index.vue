@@ -1,7 +1,7 @@
 <template>
   <div>
 
-	    <el-table
+	    <el-table 
     :data="list"
     border
     style="width: 100%">
@@ -21,14 +21,17 @@
 		  <span class="user__name">{{scope.row.name}}</span><br>
 		  <span>{{scope.row.phone}}</span><br>
 		  <span>{{scope.row.email}}</span><br>
-		  <span>{{scope.row.address}}</span>
+		  <span>{{scope.row.address}}</span><br>
+		  <span @click="shipOrders(scope.row.id)" style="margin-right:10px;color:#34c38f;cursor: pointer;"  v-if="scope.row.status == 'Pending'">xác nhận</span>
+		  <span style="color:red;cursor: pointer;">Hủy đơn</span> 
+		  
 	  </template>
     </el-table-column>
 
     <el-table-column
     
       label="Sản Phẩm"
-      width="300px">
+      width="400px">
 	  	  <template slot-scope="scope" >
 				<div class="pending__product" v-for="(item, index) in scope.row.products" :key="index">
 					<el-image
@@ -37,9 +40,9 @@
 						:src="item.image">
       				</el-image>
 					 
-						<div class="pending__quantity">
-							<span>{{index +1}}.{{item.name}} ({{item.color}}/{{item.size}})</span>
-							<span>{{item.quantity}} x {{item.price.toLocaleString('it-IT')}}</span>
+						<div style="margin-left:20px" class="pending__quantity">
+							<span style="color:black;">{{index +1}}.{{item.name}} ( {{item.color}}/{{item.size}} )</span>
+							<span>0{{item.quantity}} x {{(item.price*((100 - item.discount)/100))}}</span>
 						</div>
 					  
 					 
@@ -74,7 +77,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import { mapState} from 'vuex'
 export default {
 	data(){
 		return{
@@ -86,13 +89,30 @@ export default {
 	},
 	methods:{
 		listOrders(){
-			this.$store.dispatch('orders/listOrders')
-		}
+			this.$store.dispatch('orders/listOrders',
+				1
+			)
+		},
+		 shipOrders(id){
+		 	this.$store.dispatch('orders/shipOrders',id).then((res)=>{
+				this.open2()
+				
+			 })
+			 
+		 },
+		 open2() {
+        this.$message({
+          message: 'Xác Nhận đơn hàng.',
+          type: 'success'
+        });
+      },
+
 	},
 	computed:{
 		...mapState({
 			list : state => state.orders.listOrders
-		})
+		}),
+	
 	}
 
 }
@@ -101,6 +121,7 @@ export default {
 <style>
 .pending__product{
 	display: flex;
+	
 }
 .pending__product{
 	padding: 20px;

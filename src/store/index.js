@@ -11,6 +11,7 @@ import supplier from './modules/supplier'
 import product from './modules/product'
 import contact from './modules/contact'
 import orders from './modules/orders'
+import dashboard from './modules/dashboard'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,9 @@ const store = new Vuex.Store({
     supplier,
 	product,
 	contact,
-	orders
+	orders,
+	dashboard
+	
   },
   getters
 })

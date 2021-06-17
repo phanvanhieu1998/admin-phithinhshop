@@ -3,8 +3,40 @@ import { Line } from "vue-chartjs";
 
 export default {
   extends: Line,
-  mounted() {
-    this.renderChart(
+  	props:
+	{
+		chart:{
+			default:() =>{},
+			
+
+		}
+	},
+		watch: {
+		chart(newVal, oldVal){
+			console.log(newVal, oldVal)
+			 this.loadData()
+		},
+
+	},
+	mounted(){
+		this.loadData()
+	},
+  methods: {
+	  loadData(){
+		  let pending = this.chart.pending === undefined? []: this.chart.pending;
+		  let pending1 = pending.replaceAll(',' , '').split('').map(pending => Number(pending))
+
+		    let shipping = this.chart.shipping === undefined? []: this.chart.shipping;
+		  let shipping1 = shipping.replaceAll(',' , '').split('').map(shipping => Number(shipping))
+
+		    let fail = this.chart.fail === undefined? []: this.chart.fail;
+		  let fail1 = fail.replaceAll(',' , '').split('').map(fail => Number(fail))
+
+		    let success = this.chart.success === undefined? []: this.chart.success;
+		  let a = success.replaceAll(',' , '').split('').map(success => Number(success))
+		   
+		
+		    this.renderChart(
       {
         labels: [
           "1",
@@ -24,28 +56,28 @@ export default {
         datasets: [
           {
             label: "Đơn mới",
-            data: [2, 10, 5, 9, 0, 6, 20],
+            data: pending1,
             backgroundColor: "transparent",
             borderColor: "rgb(241, 180, 76)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
 		         {
             label: "Đang giao",
-            data: [2, 4, 5, 6, 0, 6, 10],
+            data: shipping1,
             backgroundColor: "transparent",
             borderColor: "rgb(85, 110, 230)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
 		         {
             label: "Bị hủy",
-            data: [1, 40, 6, 10, 20, 3, 5],
+            data: fail1,
             backgroundColor: "transparent",
             borderColor: "rgb(244, 106, 106)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
           },
 		         {
             label: "Thành công",
-            data: [5, 12, 5, 9, 10, 7, 4],
+            data: a,
             backgroundColor: "transparent",
             borderColor: "rgb(52, 195, 143)",
             pointBackgroundColor: "rgba(171, 71, 188, 1)"
@@ -61,6 +93,8 @@ export default {
         }
       }
     );
+	  }
+
   }
 };
 </script>

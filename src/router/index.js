@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from "@/layout";
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -31,29 +31,29 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [{
-        path: '/login',
+        path: "/login",
         component: () =>
-            import ('@/views/login/index'),
+            import ("@/views/login/index"),
         hidden: true
     },
 
     {
-        path: '/404',
+        path: "/404",
         component: () =>
-            import ('@/views/404'),
+            import ("@/views/404"),
         hidden: true
     },
 
     {
-        path: '/',
+        path: "/",
         component: Layout,
-        redirect: '/dashboard',
+        redirect: "/dashboard",
         children: [{
-            path: 'dashboard',
-            name: 'hihi',
+            path: "dashboard",
+            name: "hihi",
             component: () =>
-                import ('@/views/dashboard/index'),
-            meta: { title: 'Trang chủ', icon: 'dashboard' }
+                import ("@/views/dashboard/index"),
+            meta: { title: "Trang chủ", icon: "dashboard" }
         }]
     },
 
@@ -79,185 +79,175 @@ export const constantRoutes = [{
     //   ]
     // },
     {
-        path: '/example',
+        path: "/example",
         component: Layout,
 
-        name: 'Example',
-        meta: { title: 'Danh mục sản phẩm ', icon: 'el-icon-s-help' },
+        name: "Example",
+        meta: { title: "Danh mục sản phẩm ", icon: "el-icon-s-help" },
         children: [{
-                path: 'category',
-                name: 'category',
+                path: "category",
+                name: "category",
                 component: () =>
-                    import ('@/views/category/index'),
-                meta: { title: 'xem danh sách', icon: 'table' }
+                    import ("@/views/category/index"),
+                meta: { title: "xem danh sách", icon: "table" }
             },
             {
-                path: 'tree',
-                name: 'Tree',
+                path: "tree",
+                name: "Tree",
                 component: () =>
-                    import ('@/views/slider/index'),
-                meta: { title: 'Tree', icon: 'tree' }
+                    import ("@/views/slider/index"),
+                meta: { title: "Tree", icon: "tree" }
             }
         ]
     },
 
-
     {
-        path: '/brand',
+        path: "/brand",
         component: Layout,
         // meta: { title: 'Danh mục sản phẩm ', icon: 'el-icon-s-help' },
         children: [{
-                path: '',
-                name: 'brand',
-                component: () =>
-                    import ('@/views/brand/index'),
-                meta: { title: 'Thương hiệu', icon: 'form' }
-            },
-
-        ]
-    },
-    {
-        path: '/contacts',
-        component: Layout,
-        meta: { title: ' Liên hệ ', icon: 'el-icon-s-help' },
-        children: [{
-                path: '/contacts',
-                name: 'contacts',
-                component: () =>
-                    import ('@/views/contacts/index'),
-                meta: { title: 'Danh sách liên hệ', icon: 'form' }
-            },
-            {
-                path: '/handleContact',
-                component: () =>
-                    import ('@/views/handleContact/index'),
-                name: 'handleContact',
-                meta: { title: 'Xử lý liên hệ', icon: 'form' }
-            },
-
-        ]
-    },
-
-    {
-        path: '/no need',
-        component: Layout,
-        meta: { title: 'Đơn Hàng', icon: 'el-icon-s-help' },
-        children: [{
-                path: '/pending',
-                name: 'pending',
-                component: () =>
-                    import ('@/views/pending/index'),
-                meta: { title: 'Đơn chờ duyệt', icon: 'form' }
-            },
-            {
-                path: '/shipping',
-                component: () =>
-                    import ('@/views/shipping/index'),
-                name: 'shipping',
-                meta: { title: 'Đơn đang giao', icon: 'form' }
-            },
-            {
-                path: '/accomplished',
-                component: () =>
-                    import ('@/views/accomplished/index'),
-                name: 'accomplished',
-                meta: { title: 'Đơn đã hoàn thành', icon: 'form' }
-            },
-
-        ]
-    },
-
-
-    {
-        path: '/slider',
-        component: Layout,
-        children: [{
-            path: 'index',
-            name: 'slider',
+            path: "",
+            name: "brand",
             component: () =>
-                import ('@/views/slider/index'),
-            meta: { title: 'Danh sách slider', icon: 'form' }
+                import ("@/views/brand/index"),
+            meta: { title: "Thương hiệu", icon: "form" }
         }]
     },
-
     {
-        path: '/product',
+        path: "",
         component: Layout,
-        // redirect: '/product1',
-        name: 'Product',
-        meta: {
-            title: 'Sản phẩm',
-            icon: 'nested'
-        },
-        children: [
-
-            {
-                path: 'index',
+        meta: { title: " Liên hệ ", icon: "el-icon-s-help" },
+        children: [{
+                path: "/contacts",
+                name: "contacts",
                 component: () =>
-                    import ('@/views/addProduct/index'),
-                name: 'product',
-                meta: { title: 'Thêm sản phẩm' }
+                    import ("@/views/contacts/index"),
+                meta: { title: "Danh sách liên hệ", icon: "form" }
             },
             {
-                path: 'product1',
+                path: "/handleContact",
                 component: () =>
-                    import ('@/views/product1/index'),
-                name: 'product1',
-                meta: { title: 'Danh sách sản phẩm' }
-            },
-            {
-                path: 'updateProduct',
-                name: 'updateProduct',
-                component: () =>
-                    import ('@/views/updateProduct/index'),
-                meta: { title: 'UpdateProduct' }
+                    import ("@/views/handleContact/index"),
+                name: "handleContact",
+                meta: { title: "Xử lý liên hệ", icon: "form" }
             }
         ]
     },
 
+    {
+        path: "/no need",
+        component: Layout,
+        meta: { title: "Đơn Hàng", icon: "el-icon-s-help" },
+        children: [{
+                path: "/pending",
+                name: "pending",
+                component: () =>
+                    import ("@/views/pending/index"),
+                meta: { title: "Đơn chờ duyệt", icon: "form" }
+            },
+            {
+                path: "/shipping",
+                component: () =>
+                    import ("@/views/shipping/index"),
+                name: "shipping",
+                meta: { title: "Đơn đang giao", icon: "form" }
+            },
+            {
+                path: "/accomplished",
+                component: () =>
+                    import ("@/views/accomplished/index"),
+                name: "accomplished",
+                meta: { title: "Đơn đã hoàn thành", icon: "form" }
+            }
+        ]
+    },
 
     {
-        path: '/updateProfile',
+        path: "/slider",
         component: Layout,
         children: [{
-            path: 'index',
-            name: 'updateProfile',
+            path: "index",
+            name: "slider",
             component: () =>
-                import ('@/views/updateProfile/index'),
-            meta: { title: 'Thông tin cá nhân', icon: 'link' }
+                import ("@/views/slider/index"),
+            meta: { title: "Danh sách slider", icon: "form" }
         }]
     },
 
+    {
+        path: "/product",
+        component: Layout,
+        // redirect: '/product1',
+        name: "Product",
+        meta: {
+            title: "Sản phẩm",
+            icon: "nested"
+        },
+        children: [{
+                path: "index",
+                component: () =>
+                    import ("@/views/addProduct/index"),
+                name: "product",
+                meta: { title: "Thêm sản phẩm" }
+            },
+            {
+                path: "product1",
+                component: () =>
+                    import ("@/views/product1/index"),
+                name: "product1",
+                meta: { title: "Danh sách sản phẩm" }
+            },
+            {
+                path: "updateProduct",
+                name: "updateProduct",
+                component: () =>
+                    import ("@/views/updateProduct/index"),
+                meta: { title: "UpdateProduct" }
+            }
+        ]
+    },
 
     {
-        path: '/supplier',
+        path: "/updateProfile",
         component: Layout,
         children: [{
-            path: 'index',
-            name: 'spuplier',
+            path: "index",
+            name: "updateProfile",
             component: () =>
-                import ('@/views/supplier/index'),
-            meta: { title: 'supplier', icon: 'link' }
+                import ("@/views/updateProfile/index"),
+            meta: { title: "Thông tin cá nhân", icon: "link" }
         }]
     },
 
+    {
+        path: "/supplier",
+        component: Layout,
+        children: [{
+            path: "index",
+            name: "spuplier",
+            component: () =>
+                import ("@/views/supplier/index"),
+            meta: { title: "supplier", icon: "link" }
+        }]
+    },
 
     // 404 page must be placed at the end !!!
-    { path: '*', redirect: '/404', hidden: true }
-]
+    { path: "*", redirect: "/404", hidden: true }
+];
 
-const createRouter = () => new Router({
-    // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-})
+const createRouter = () =>
+    new Router({
+        // mode: 'history', // require service support
+        scrollBehavior: () => ({ y: 0 }),
+        routes: constantRoutes
+    });
 
-const router = createRouter()
+const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
+    const newRouter = createRouter();
+    router.matcher = newRouter.matcher; // reset router
 }
 
-export default router
+export default router;

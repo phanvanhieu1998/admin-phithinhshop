@@ -2,11 +2,10 @@ import request from '@/utils/request'
 
 class OrdersAPI {
 
-    listOrders() {
+    listOrders(data) {
         return request({
-            url: '/orders',
+            url: `/orders?status=${data}`,
             method: 'get',
-
         })
     }
     deleteOrders(data) {
@@ -15,13 +14,27 @@ class OrdersAPI {
                 method: 'delete',
             })
         }
-        //  handleUpdate(data){
-        //    return request({
-        //      url:`/contacts/${data.id}`,
-        //      method:'put',
-        //      data
-        //    })
-        //  }
+		shipOrders(id){
+        return request({
+          url:`/orders/${id}`,
+          method:'post',
+		
+        })
+      }
+	  shipOrders1(id){
+        return request({
+          url:`/orders/${id}/completed`,
+          method:'post',
+		
+        })
+      }
+	  listOrdersComplete(){
+        return request({
+          url:'orders-complete',
+          method:'get',
+		
+        })
+      }
 
 }
 const Orders = new OrdersAPI("orders");
